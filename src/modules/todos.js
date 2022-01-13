@@ -3,14 +3,15 @@ import React from 'react';
 // 액션타입 선언
 const ADD_TODO = 'todos/ADD_TODO';
 const TOGGLE_TODO = 'todos/TOGGLE_TODO';
-let nextId = 1;
+let nextId = 0;
 
 // 액션 생성 함수
 export const addTodo = text => ({
     type: ADD_TODO,
     todo: {
         id: nextId++,
-        text
+        text,
+        done: false
     }
 })
 export const toggleTodo = id => ({
@@ -19,8 +20,8 @@ export const toggleTodo = id => ({
 })
 
 // 초기상태 지정
+// // 원래는 이런 형태로 넣겠다는걸 보여주려고 작성, 지금은 빈배열 넣을거임
 const initialState = [
-    // 이런 형태로 넣겠다는걸 보여주려고 작성, 지금은 빈배열 넣을거임
     // {
     //     id: 1,
     //     text: '예시',
@@ -28,6 +29,7 @@ const initialState = [
     // }
 ]
 
+// 리듀서 만들기
 export default function todos(state = initialState, action) {
     switch (action.type) {
         case TOGGLE_TODO:
@@ -38,7 +40,7 @@ export default function todos(state = initialState, action) {
                 : todo // 아닐 때는 값을 그대로 둠
             )
         case ADD_TODO :
-            return state.concat(action.todo)
+            return state.concat(action.todo) // concat은 배열메서드
         default:
             return state;
     }

@@ -1,8 +1,8 @@
 // 리덕스 스토어 상태를 조회하거나 액션을 디스패치할 수 있는 컴포넌트
-
+// 컨테이너 컴포넌트는 php에서 process가 했던 역할과 비슷함
 import React from 'react';
 import Counter from '../components/Counter';
-// 액션 생성함수 불러오기
+// counter.js에 있는 액션 생성함수 불러오기
 import { increase, decrease, setDiff } from '../modules/counter'; // counter컴포넌트에 있는 액션 생성함수를 가지고 옴
 import { useSelector, useDispatch } from 'react-redux'; // 
 
