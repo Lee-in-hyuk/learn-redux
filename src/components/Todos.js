@@ -3,7 +3,7 @@
 import React from 'react';
 import { useState } from 'react';
 
-function Todo({ todos, onCreate, onToggle }) {
+function Todo({ todos, onCreate, onToggle, onDelete }) {
     // 인풋에 입력되는 값을 관리하는 상태
     const [ text, setText ] = useState("");
     // 인풋의 입력값이 변경될 때 실행하는 함수
@@ -28,7 +28,9 @@ function Todo({ todos, onCreate, onToggle }) {
                 {   // style에 첫번째 중괄호는 자바스크립트를 쓰기 위해 작성, 두번째 중괄호는 객체형태를 쓰기 위해 작성
                     // 삼항연산자 써서 todo.done이 true일 때 해당 스타일을 넣고, false일 때 none을 넣겠다.
                     todos.map(todo=><li style={{ textDecoration: todo.done ? 'line-through' : 'none', cursor:'pointer'}}
-                        key={todo.id} onClick={()=>{onToggle(todo.id)}}>{todo.text}</li>)
+                        key={todo.id} onClick={()=>{onToggle(todo.id)}}>{todo.text}
+                        <button style={{ outline:'none', border:'none',background:'#fff', paddingLeft:'30px'}} onClick={()=>{onDelete(todo.id)}}>❌</button>
+                        </li>)
                 }
             </ul>
         </div>

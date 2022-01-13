@@ -2,7 +2,7 @@
 import React from 'react';
 import Todos from '../components/Todos';
 // todos.js에 있는 액션 생성함수 불러오기
-import { addTodo, toggleTodo } from '../modules/todos';
+import { addTodo, deleteTodo, toggleTodo } from '../modules/todos';
 import { useSelector, useDispatch } from 'react-redux';
 
 function TodoContainer() {
@@ -18,6 +18,7 @@ function TodoContainer() {
     // dispatch는 리듀서를 실행시키는 역할인데, 액션을 갖고 있어야 해서 type을 갖고 있는 액션 함수를 가지고 온거.
     const onCreate = text => dispatch(addTodo(text));
     const onToggle = id => dispatch(toggleTodo(id));
+    const onDelete = id => dispatch(deleteTodo(id));
     return (
         <Todos
             // 상태
@@ -25,6 +26,7 @@ function TodoContainer() {
             // 액션을 디스패치하는 함수들
             onCreate={onCreate}
             onToggle={onToggle}
+            onDelete={onDelete}
         />
     );
 }
